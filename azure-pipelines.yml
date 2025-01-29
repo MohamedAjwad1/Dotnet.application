@@ -27,7 +27,7 @@ steps:
 
   - task: AzureWebApp@1
     inputs:
-      azureSubscription: '<Your-Azure-Service-Connection>'
+      azureSubscription: 'Dotnetapp'
       appName: 'my-dotnet-app'
       package: '$(Build.ArtifactStagingDirectory)'
 
