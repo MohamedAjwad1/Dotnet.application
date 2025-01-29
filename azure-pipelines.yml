@@ -11,13 +11,13 @@ steps:
       version: '6.x'
       installationPath: $(Agent.ToolsDirectory)/dotnet
 
-  - script: dotnet restore
+  - script: dotnet restore $(Build.SourcesDirectory)/DotnetAzureDevops.Net
     displayName: 'Restore Dependencies'
 
-  - script: dotnet build --configuration Release
+  - script: dotnet build --configuration Release $(Build.SourcesDirectory)/DotnetAzureDevops.Net
     displayName: 'Build Application'
 
-  - script: dotnet publish -c Release -o $(Build.ArtifactStagingDirectory)
+  - script: dotnet publish -c Release -o $(Build.ArtifactStagingDirectory) $(Build.SourcesDirectory)/DotnetAzureDevops.Net
     displayName: 'Publish Artifacts'
 
   - task: PublishBuildArtifacts@1
@@ -30,4 +30,3 @@ steps:
       azureSubscription: 'Dotnetapp'
       appName: 'my-dotnet-app'
       package: '$(Build.ArtifactStagingDirectory)'
-
